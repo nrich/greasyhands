@@ -1,0 +1,133 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span12">
+
+				<h1 class="title">
+					$Model.Title.Name
+				</h1>
+            </div>
+        </div>
+
+		<div class="row">
+            <div class="span12">
+                <h2>&nbsp;</h2>
+            </div>
+        </div>
+
+		<div class="row">
+            <div class="span4">
+                <dl class="dl-horizontal">
+                    <dt>Publisher:</dt>
+                    <dd>$Model.Title.Publisher.Name</dd>
+
+				    <dt>Status: </dt>
+				    <dd>#if ($Model.Title.Limited != 0) $Model.Title.Limited issue limited series #else Ongoing #end</dd>
+				    <dt>Mature: </dt>
+				    <dd>#if ($Model.Title.Mature)  <i class="icon-ok"></i> #else <i class="icon-remove"></i> #end </dd>
+			        <dt>One Shot: </dt>
+                    <dd>#if ($Model.Title.OneShot)  <i class="icon-ok"></i> #else <i class="icon-remove"></i> #end </dd>
+			        <dt>Graphic Novel: </dt>
+                    <dd>#if ($Model.Title.GraphicNovel)  <i class="icon-ok"></i> #else <i class="icon-remove"></i> #end </dd>
+			        <dt>Hard Cover: </dt>
+                    <dd>#if ($Model.Title.HardCover)  <i class="icon-ok"></i> #else <i class="icon-remove"></i> #end </dd>
+                </dl>
+            </div>
+        </div>
+
+		<div class="row">
+            <div class="span12">
+                <h2>&nbsp;</h2>
+            </div>
+        </div>
+
+		<div class="row">
+            
+            <div class="span6">
+                <form class="form-horizontal" method="POST">
+                    <input type="hidden" name="titleid" value="$Model.Title.Id" />
+
+                	<fieldset>
+                        <div class="control-group">
+                            <label class="control-label" for="matchtitle">Title Match:</label>
+                            <div class="controls">
+                                <select id="matchtitle" name="MatchTitle">
+				                    <option value="Exact" #if ($Model.Title.MatchTitle == "Exact") checked #end>Exact Match</option>
+				                    <option value="Partial" #if ($Model.Title.MatchTitle == "Partial") checked #end>Partial Match</option>
+			                    </select>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="subscribed">Subscribed:</label>
+                            <div class="controls">
+                                <input id="subscribed" name="Subscribed" type="checkbox" #if ($Model.Title.Subscribed) checked #end value="1"/>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn btn-primary" type="submit">Save changes</button>
+                        </div>
+
+                    </fieldset>                
+                </form>
+            </div>
+            
+        </div>
+
+		<div class="row">
+            <div class="span12">
+                <h2>&nbsp;</h2>
+            </div>
+        </div>
+
+		<div class="row">
+            <div class="span12">
+
+				<form method="POST">
+					<input type="hidden" name="titleid" value="$Model.Title.Id" />
+
+					Change selected issues to 
+					<select name="Status">
+						<option value="Wanted" selected="t">Wanted</option>
+						<option value="Owned">Owned</option>
+						<option value="Read">Read</option>
+						<option value="Skipped">Skipped</option>
+					</select>
+
+					<button class="btn btn-primary" type="submit">Go</button>
+
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th width="1%"><input id="checkAll" type="checkbox" /></th>
+								<th>Issue#</th>
+								<th>Code</th>
+                                <th>Variant</th>
+								<th>Released</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+
+						<tbody>
+						#foreach( $issue in $Model.issues )
+							<tr class="#if ($issue.Status == 'Wanted') unaired #else good #end">
+								<td>
+									<input type="checkbox" name="issue" value="$issue.Id" />
+								</td>
+								<td>$issue.Num</td>
+								<td>$issue.Code</td>
+                                <td>$issue.Variant</td>
+								<td>$issue.Released</td>                                
+								<td>$issue.Status</td>
+							</tr>
+						#end
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	
+
+#parse("Views/common/footer.nvt")

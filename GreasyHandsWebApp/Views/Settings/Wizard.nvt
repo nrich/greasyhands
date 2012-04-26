@@ -1,0 +1,69 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div id="SubMenu">
+			<span>
+				<a href="/subscriptions/search">Add new subscription</a> |
+				<a href="/subscriptions/search">Restart</a> |
+				<a href="/subscriptions/search">Shutdown</a>
+			</span>
+		</div>
+
+		<div id="contentWrapper">
+			<div id="content">
+				<h1 class="title">Download Provider Configuration</h1>
+
+	<form method="POST">
+
+
+		<fieldset>
+			<legend>Add New Search Provider</legend>
+
+			Type: <select name="SearchType">
+				<option value="NZBINDEXdotNL">nzbindex.nl</option>
+				<option value="NZBdotSU">nzb.su</option>
+			</select><br />
+
+			API Key: <input type="text" name="SearchApiKey" value=""/><br />
+			Enabled: <input type="checkbox" name="SearchEnabled" value="1" checked /><br />
+		</fieldset>
+
+		<fieldset>
+			<legend>Add New Download Provider</legend>
+
+			Type: <select name="DownloadType">
+				<option value="SABnzbd">SABnzbd</option>
+				<option value="SaveFile">Save File</option>
+			</select><br />
+
+			Host: <input type="text" name="Host" value="localhost"/><br />
+			Port: <input type="text" name="Port" value="9090"/><br />
+			Path: <input type="text" name="Path" value="sabnzbd"/><br />
+            API Key: <input type="text" name="DownloadApiKey" value="FIXME"/><br />
+			Username: <input type="text" name="Username" value=""/><br />
+			Password: <input type="text" name="Password" value=""/><br />
+			Category: <input type="text" name="Category" value="books"/><br />
+			Enabled: <input type="checkbox" name="DownloadEnabled" value="1" checked /><br />
+
+			<br />
+		</fieldset>
+
+		<fieldset>
+			<legend>General Settings</legend>
+
+            Search Interval: <input type="text" name="SearchInterval" value="1"/><br />
+			API Key: <input type="text" name="ApiKey" value="$Model.ApiKey"/><br />
+			History: <input type="text" name="Weeks" value="4"/><br />
+
+			Cover to Cover scans (c2c): <select name="C2CPreference">
+				<option value="Ignore">Ignore C2C scans</option>
+				<option value="None" selected>Download C2C Scans as normal</option>
+				<option value="Only">Only download C2C scans</option>
+			</select><br />
+
+			<input type="submit" value="Save"/>
+		</fieldset>
+
+	</form>
+
+#parse("Views/common/footer.nvt")

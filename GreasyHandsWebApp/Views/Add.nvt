@@ -1,0 +1,23 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+		<div class="row">
+            <div class="span12">
+                <form class="well form-search" method="POST" autocomplete="off">
+                    Title: <input name="TitleName" type="text" class="input-medium search-query span2" style="margin: 0 auto;" data-provide="typeahead" data-items="6" data-source='$Model.titles'>
+
+			        Match Type: <select name="MatchTitle">
+				        <option value="Exact" selected>Exact Match</option>
+				        <option value="Partial">Partial Match</option>
+			        </select><br />
+
+			        Initial Status: <select name="IssueStatus">
+				        <option value="Wanted">Wanted</option>
+				        <option value="Skipped" selected>Skipped</option>
+			        </select><br />
+
+                    <button type="submit" class="btn">Add Subscription</button>
+                </form>
+			</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

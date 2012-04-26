@@ -1,0 +1,85 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span12">
+
+				<h1 class="title">Download Provider Configuration</h1>
+
+				<div id="config">
+					<div id="config-content">
+
+						#foreach ($provider in $Model.Destination)
+						<form method="POST">
+							<div id="config-components">
+								<div id="core-component-group1" class="component-group clearfix">
+									<div class="component-group-desc">
+										<h3>Test</h3>
+										<p>Test</p>
+									</div>
+
+									<fieldset class="component-group-list">
+										<legend>$provider.Type</legend>
+
+										<input type="hidden" name="Id" value="$provider.Id"/><br />
+			
+			
+										Host: <input type="text" name="Host" value="$provider.Host"/><br />
+										Port: <input type="text" name="Port" value="$provider.Port"/><br />
+										Path: <input type="text" name="Path" value="$provider.Path"/><br />
+										API Key: <input type="text" name="ApiKey" value="$provider.ApiKey"/><br />
+										Username: <input type="text" name="Username" value="$provider.Username"/><br />
+										Password: <input type="text" name="Password" value="$provider.Password"/><br />
+										Category: <input type="text" name="Category" value="$provider.Category"/><br />
+										Enabled: <input type="checkbox" name="Enabled" #if ($provider.Enabled) checked #end/><br />
+
+										<br />
+
+										<input type="submit" value="Save Changes"/>
+									</fieldset>
+								</div>
+							</div>
+						</form>
+						#end
+					</div>
+				</div>
+
+				<div id="config">
+					<div id="config-content">
+						<form method="POST">
+							<div id="config-components">
+								<div id="core-component-group1" class="component-group clearfix">
+									<div class="component-group-desc">
+										<h3>Test</h3>
+										<p>Test</p>
+									</div>
+
+								<fieldset>
+									<legend>Add New Download Provider</legend>
+
+									Type: <select name="Type">
+										<option value="SABnzbd">SABnzbd</option>
+										<option value="SaveFile">Save File</option>
+									</select><br />
+
+									Host: <input type="text" name="Host" value=""/><br />
+									Port: <input type="text" name="Port" value=""/><br />
+									Path: <input type="text" name="Path" value=""/><br />
+									API Key: <input type="text" name="ApiKey" value=""/><br />
+									Username: <input type="text" name="Username" value=""/><br />
+									Password: <input type="text" name="Password" value=""/><br />
+									Category: <input type="text" name="Category" value=""/><br />
+									Enabled: <input type="checkbox" name="Enabled" /><br />
+
+									<br />
+
+									<input type="submit" value="Add"/>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

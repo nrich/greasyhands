@@ -1,0 +1,58 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span12">
+				<h1 class="title">All Titles</h1>
+
+				<form method="POST">
+					<table class="table table-striped table-bordered">
+
+					#set( $currentPublisher = "" )
+
+					#foreach( $title in $Model.titles )
+
+						#if ($currentPublisher != $title.Publisher.Name)
+						#set( $currentPublisher = $title.Publisher.Name )
+
+						<tr id="$currentPublisher" class="seasonheader">
+							<td colspan="4">
+								<h2>$currentPublisher</h2>
+							</td>
+						</tr>
+
+						<tr id="${currentPublisher}-cols">
+							<th width="1%">
+								???
+							</th>
+
+							<th>Title</th>
+							<th>Latest Issue</th>
+							<th>Status</th>
+						</tr>
+						#end
+
+						<tr>
+							<td>
+								<input type="checkbox" name="title" value="$title.Id" />
+							</td>
+
+							<td>
+                                <a href="/titles/single/$title.Id/">$title.Name</a>
+                            </td>
+							<td>#$title.LatestNum (Released $title.Latest)</td>
+
+							#if ($title.Limited != 0)
+							<td> $title.Limited issue limited series</td>
+							#else
+							<td>Ongoing</td>
+							#end
+
+						</tr>						
+					#end
+					</table>
+				</form>
+			</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

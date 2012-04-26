@@ -1,0 +1,57 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span12">
+
+				<h1>
+					Title Search
+				</h1>
+
+				<form method="POST">
+					<input type="text" name="search" value="$Model.SearchTerm"/>
+					<input type="submit" value="Search" />
+				</form>
+            </div>
+        </div>
+
+		<div class="row">
+            <div class="span12">	  
+				#if ($Model.SearchTerm != "" && $Model.Results.Count > 0)
+				<form method="POST" action="/titles">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Publisher</th>
+								<th>Subscribe</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							#foreach( $title in $Model.Results )
+							#odd 
+							<tr class="odd">
+							#even 
+							<tr class="even">							
+							#each
+								#set($titlename = $Helper.ReplaceMatch($title.Name, $Model.SearchTerm, "<em>%1</em>"))
+								<td><a href="">$titlename</a></td>
+								<td>$title.Publisher.Name</td>
+								<td> 
+									<input type="checkbox" name="title" value="$title.Id" #if ($title.Subscribed) checked #end />
+								</td>
+							</tr>
+							#end
+						</tbody>
+					</table>
+
+					<input type="submit" value="Subscribe" />
+				</form>
+				#elseif ($Model.SearchTerm != "")
+					<div>No results found for "$Model.SearchTerm"</div>
+				#end
+			</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

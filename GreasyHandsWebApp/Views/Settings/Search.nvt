@@ -1,0 +1,146 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span12">
+
+#foreach ($provider in $Model.Search)
+	<form class="form-horizontal" method="POST">
+		<fieldset>
+			<legend>$provider.Type</legend>
+
+            #if ($provider.Type != "NZBINDEXdotNL")
+            <div class="control-group">
+                <label class="control-label" for="apikey">API Key:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="apikey" name="ApiKey" value="$provider.ApiKey"/>
+                    <p class="help-block">API Key</p>
+                </div>
+            </div>
+            #end
+
+            #if ($provider.Type == "NewzNab")
+            <div class="control-group">
+                <label class="control-label" for="host">Host:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="host" name="Host" value="$provider.Host"/>
+                    <p class="help-block">Hostname</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="port">Port:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="port" name="Port" value="$provider.Port"/>
+                    <p class="help-block">Port</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="host">Path:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="path" name="Path" value="$provider.Path"/>
+                    <p class="help-block">Path</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="ssl">SSL:</label>
+                <div class="controls">
+                    <input type="checkbox" name="SSL" #if ($provider.SSL) checked #end/>
+                    <p class="help-block">Use SSL</p>
+                </div>
+            </div>
+            #end
+
+            <div class="control-group">
+                <label class="control-label" for="enabled">Enabled:</label>
+                <div class="controls">
+                    <input type="checkbox" id="enabled" name="Enabled" #if ($provider.Enabled) checked #end/>
+                    <p class="help-block">Enabled</p>
+                </div>
+            </div>
+
+			<input type="hidden" name="Id" value="$provider.Id"/><br />
+
+			<div class="form-actions">
+                <button class="btn btn-primary" type="submit">Save changes</button>
+            </div>
+		</fieldset>
+	</form>
+#end
+
+	<form class="form-horizontal" method="POST">
+		<fieldset>
+			<legend>Add New Search Provider</legend>
+
+            <div class="control-group">
+                <label class="control-label" for="type">Type:</label>
+                <div class="controls">
+                    <select id="type" name="Type">
+				        <option value="NZBINDEXdotNL">nzbindex.nl</option>
+				        <option value="NZBdotSU">nzb.su</option>
+                        <option value="NewzNab">NewzNab</option>
+			        </select>
+                    <p class="help-block">Type</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="apikey">API Key:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="apikey" name="ApiKey" value=""/>
+                    <p class="help-block">API Key</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="host">Host:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="host" name="Host" value=""/>
+                    <p class="help-block">Hostname</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="port">Port:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="port" name="Port" value="80"/>
+                    <p class="help-block">Port</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="host">Path:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="path" name="Path" value="/api"/>
+                    <p class="help-block">Path</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="ssl">SSL:</label>
+                <div class="controls">
+                    <input type="checkbox" name="SSL" />
+                    <p class="help-block">Use SSL</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="apikey">Enabled:</label>
+                <div class="controls">
+                    <input type="checkbox" name="Enabled" />
+                    <p class="help-block">Enabled</p>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Save changes</button>
+            </div>
+
+		</fieldset>
+	</form>
+	</div>
+	</div>
+
+#parse("Views/common/footer.nvt")

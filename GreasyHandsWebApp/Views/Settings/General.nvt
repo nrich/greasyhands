@@ -1,0 +1,48 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span12">
+
+				<form class="form-horizontal" method="POST">
+					<fieldset>
+						<legend>Settings</legend>
+
+                        <div class="control-group">
+                            <label class="control-label" for="apikey">API Key:</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" id="apikey" name="ApiKey" value="$Model.ApiKey"/>
+                                <p class="help-block">API Key</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="searchinterval">Search Interval:</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" id="searchinterval" name="SearchInterval" value="$Model.SearchInterval"/>
+                                <p class="help-block">API Key</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="C2CPreference">Cover to Cover scans:</label>
+                            <div class="controls">
+                                <select id="C2CPreference" name="C2CPreference">
+							        <option value="Ignore" #if ($Model.C2CPreference == "Ignore") selected #end>Ignore C2C scans</option>
+							        <option value="None" #if ($Model.C2CPreference == "None") selected #end>Download C2C Scans as normal</option>
+							        <option value="Only" #if ($Model.C2CPreference == "Only") selected #end>Only download C2C scans</option>
+						        </select>
+                                <p class="help-block">c2c scans</p>
+                            </div>
+                        </div>
+
+						<div class="form-actions">
+                            <button class="btn btn-primary" type="submit">Save changes</button>
+                        </div>
+
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

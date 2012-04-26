@@ -1,0 +1,26 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span12">
+
+				<h1 class="title">Configuration</h1>
+
+				<dl class="dl-horizontal">
+						
+					<dt>Application Path: </dt>
+					<dd>$Model.AppPath</dd>
+
+					<dt>Application Args: </dt>
+					<dd>[$Model.Args]</dd>
+
+					<dt>Operating System: </dt>
+					<dd>$Model.OS</dd>
+
+					<dt>Runtime: </dt>
+					<dd>$Model.Runtime</dd>
+				</dl>
+			</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

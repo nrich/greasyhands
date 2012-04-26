@@ -1,0 +1,38 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span2">&nbsp;</div>
+
+            <div class="span8">
+				<form class="form-horizontal" method="POST">
+					<fieldset>
+						<legend>Settings</legend>
+
+                        <div class="control-group">
+                            <label class="control-label" for="url">Url:</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" id="url" name="Url" value=""/>
+                                <p class="help-block">URL</p>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label class="control-label" for="weeks">Weeks past:</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" id="weeks" name="Weeks" value=""/>
+                                <p class="help-block">Weeks past</p>
+                            </div>
+                        </div>
+
+						<div class="form-actions">
+                            <button class="btn btn-primary" type="submit">Update releases</button>
+                        </div>
+                    </fieldset>
+                </form>
+			</div>
+
+            <div class="span2">&nbsp;</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

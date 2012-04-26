@@ -1,0 +1,47 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+		<div class="row">
+            <div class="span12">
+				<h3>$Model.Publisher.Name</h3>
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Latest Issue</th>
+							<th>Collection</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+
+					<tbody>
+					#foreach( $title in $Model.Titles )
+						<tr>
+							<td id="${foreach.count}">
+								<a href="/titles/single/$title.id">$title.Name</a>
+							</td>
+
+							<td>$title.Latest</td>
+							<td>$title.Have/$title.Total</td>
+
+							#if ($title.Limited != 0)
+							<td> $title.Limited issue limited series</td>
+							#else
+							<td>Ongoing</td>
+							#end
+						</tr>
+					#end
+					</tbody>
+
+					<!--
+					<tfoot>
+						<tr>
+							<th align="center" colspan="1" rowspan="1">Add Title</a>
+							<th colspan="4" rowspan="1"></th>
+						<tr>
+					</tfoot>
+					-->
+				</table>
+			</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

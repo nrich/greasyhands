@@ -1,0 +1,48 @@
+﻿#parse("Views/common/header.nvt")
+#parse("Views/common/navigation.nvt")
+
+		<div class="row">
+            <div class="span12">
+				<h1 class="title">All Titles</h1>
+
+				<form method="POST">
+					<table class="table table-striped table-bordered">
+					<tr>
+							<th width="1%">
+								???
+							</th>
+
+							<th>Title</th>
+                            <th>Publisher</th>
+							<th>Latest Issue</th>
+							<th>Status</th>
+						</tr>
+
+					#foreach( $title in $Model.titles )
+						<tr>
+							<td>
+								<input type="checkbox" name="title" value="$title.Id" />
+							</td>
+
+							<td>
+                                <a href="/titles/single/$title.Id/">$title.Name</a>
+                            </td>
+                            <td>
+                                <a href="/publishers/single/$title.Publisher.Id/">$title.Publisher.Name</a>
+                            </td>
+							<td>#$title.LatestNum (Released $title.Latest)</td>
+
+							#if ($title.Limited != 0)
+							<td> $title.Limited issue limited series</td>
+							#else
+							<td>Ongoing</td>
+							#end
+
+						</tr>						
+					#end
+					</table>
+				</form>
+			</div>
+		</div>
+
+#parse("Views/common/footer.nvt")

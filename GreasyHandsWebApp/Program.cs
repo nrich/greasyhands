@@ -26,6 +26,24 @@ namespace GreasyHandsWebApp
         {
             var builder = new ContainerBuilder();
             var searchProvider = new NZBdotSU { ApiKey = "test" };
+
+            string host = "localhost";
+            string port = "12345";
+
+            if (args.Length == 2)
+            {
+                host = args[0];
+                port = args[1];
+            }
+            else if (args.Length == 1)
+            {
+                host = args[0];
+            }
+
+            var url = String.Format("http://{0}:{1}", host, port);
+
+            Console.WriteLine("Listening on {0}", url);
+
             //string dbFile = ConfigurationManager.AppSettings["DBFile"];
 
             builder.RegisterType<SearchMatcher>().As<ISearchMatcher>();
@@ -40,8 +58,10 @@ namespace GreasyHandsWebApp
 
             builder.RegisterType<Program>();
 
-            var host = new NancyHost(new Uri("http://localhost:12345"));
-            host.Start(); // start hosting
+
+
+            var nancyHost = new NancyHost(new Uri(url));
+            nancyHost.Start(); // start hosting
 
             using (var container = builder.Build())
             {

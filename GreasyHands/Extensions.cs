@@ -33,6 +33,7 @@ namespace GreasyHands
             var output = input;
 
             output = Regex.Replace(output, @"The\s+", "", RegexOptions.IgnoreCase);
+            output = Regex.Replace(output, @"&", "and", RegexOptions.IgnoreCase);
             output = nonAlpahNum.Replace(output, "");
             output = output.ToLower();
 

@@ -135,7 +135,8 @@ namespace GreasyHandsWebApp.Routes
                                                             title.Name, 
                                                             Have = title.Have(), 
                                                             Total = title.Total(), 
-                                                            title.Mature, 
+                                                            title.Mature,
+                                                            title.SearchTitle, 
                                                             title.OneShot,
                                                             title.GraphicNovel,
                                                             title.HardCover,
@@ -211,6 +212,26 @@ namespace GreasyHandsWebApp.Routes
                                 title.MatchTitle = matchTitle;
 
                                 s.SaveOrUpdate(title);
+                            }
+
+                            if (Request.Form.SearchTitle.HasValue)
+                            {
+                                string searchTitle = Request.Form.SearchTitle;
+
+                                var title = s.QueryOver<Title>().Where(i => i.Id == titleid).SingleOrDefault<Title>();
+                                title.SearchTitle = searchTitle;
+
+                                s.SaveOrUpdate(title);
+                            }
+
+                            if (Request.Form.Action.HasValue)
+                            {
+                                if (Request.Form.Action.Value == "force-search")
+                                {
+                                    var title = s.QueryOver<Title>().Where(i => i.Id == titleid).SingleOrDefault<Title>();
+                                    title.LastSearch = DateTime.MinValue;
+                                    s.SaveOrUpdate(title);
+                                }
                             }
 
                             transaction.Commit();

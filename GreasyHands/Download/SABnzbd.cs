@@ -25,7 +25,7 @@ namespace GreasyHands.Download
                 ApiKey,
                 EmbeddedURL(result.Link),
                 Category,
-                result.Title
+                result.Title.Replace("&", "And")
                 );
 
             try
@@ -60,7 +60,7 @@ namespace GreasyHands.Download
         {
             string url = uri.ToString();
 
-            url = HttpUtility.UrlEncode(url).Replace("+", "%20");
+            url = HttpUtility.UrlEncode(url).Replace("+", "%20");            
             url = Regex.Replace(url, "(%[0-9a-f][0-9a-f])", c => c.Value.ToUpper());
             url = url.Replace("(", "%28").Replace(")", "%29").Replace("$", "%24").Replace("!", "%21").Replace("*", "%2A").Replace("'", "%27").Replace("&", "%26");
 

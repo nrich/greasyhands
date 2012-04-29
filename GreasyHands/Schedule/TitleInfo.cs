@@ -55,6 +55,7 @@ namespace GreasyHands.Schedule
                             title = new Title
                                         {
                                             Name = Name,
+                                            SearchTitle = Name,
                                             GraphicNovel = GraphicNovel,
                                             HardCover = HardCover,
                                             Hidden = false,

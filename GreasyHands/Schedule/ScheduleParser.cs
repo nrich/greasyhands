@@ -56,8 +56,6 @@ namespace GreasyHands.Schedule
                     continue;
                 }
 
-                var shippingDatePattern = new Regex(@"^Shipping(?:.*)\s+(.+?\d+)\s*$");
-
                 var headerPattern = new Regex(@"ITEM\s+CODE\s+TITLE\s+PRICE", RegexOptions.IgnoreCase);
 
 

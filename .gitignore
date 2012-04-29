@@ -1,0 +1,16 @@
+# git ignore file
+
+# resharper files
+_ReSharper.GreasyHands
+
+# compiled code
+*.dll
+*.exe
+Debug
+Release
+
+# database
+database.db
+
+# nuget
+.nuget

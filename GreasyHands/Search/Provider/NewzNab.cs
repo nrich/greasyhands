@@ -48,6 +48,9 @@ namespace GreasyHands.Search.Provider
             Console.WriteLine(searchString);
             Console.WriteLine(url);
 
+            if (feed == null)
+                return new List<Result>();
+
             if (feed.Channels == null)
                 return new List<Result>();
 

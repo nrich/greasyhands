@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using GreasyHands.DAL.Container;
 using GreasyHands.DAL.Session;
@@ -35,14 +36,14 @@ namespace GreasyHands.Jobs
                         {
                             var userSettings = s.QueryOver<UserSettings>().SingleOrDefault<UserSettings>();
 
-                            ISearchProvider searchProvider;
+                            IList<ISearchProvider> searchProviders;
                             IDownloadProvider downloadProvider;
 
 
 
                             if (userSettings != null && userSettings.IsConfigured())
                             {
-                                searchProvider = userSettings.GetBestSearchProvider();
+                                searchProviders = userSettings.GetSearchProviders();
                                 downloadProvider = userSettings.GetBestDownloadProvider();
                             }
                             else
@@ -68,17 +69,27 @@ namespace GreasyHands.Jobs
                                     Console.WriteLine(issue);
 
                                     var query = issue.GenerateQuery();
-                                    var results = searchProvider.Search(query);
+                                    var found = false;
 
-                                    foreach (var result in results)
+                                    foreach (var searchProvider in searchProviders)
                                     {
-                                        if (searchMatcher.MatchFilename(query, result.Title, userSettings.C2CPreference, issue.Title.MatchTitle))
-                                        {
-                                            issue.Status = downloadProvider.QueueDownload(result) ? IssueStatus.Grabbed : IssueStatus.Failed;
-                                            s.SaveOrUpdate(issue);
+                                        var results = searchProvider.Search(query);
 
-                                            break;
+                                        foreach (var result in results)
+                                        {
+                                            if (searchMatcher.MatchFilename(query, result.Title, userSettings.C2CPreference, issue.Title.MatchTitle))
+                                            {
+                                                issue.Status = downloadProvider.QueueDownload(result)
+                                                                   ? IssueStatus.Grabbed
+                                                                   : IssueStatus.Failed;
+                                                s.SaveOrUpdate(issue);
+                                                found = true;
+                                                break;
+                                            }
                                         }
+
+                                        if (found)
+                                            break;
                                     }
                                 }
 

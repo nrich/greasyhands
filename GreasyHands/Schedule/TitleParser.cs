@@ -117,6 +117,7 @@ namespace GreasyHands.Schedule
         {
 
             title = title.Replace("O/T", "OF THE");
+            title = title.Replace(" OT ", " OF THE ");
             title = title.Replace("I/T", "IN THE");
 
             {

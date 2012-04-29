@@ -58,7 +58,7 @@ namespace GreasyHands.DAL.Container
                            IssueID = Id,
                            Limited = Title.Limited,
                            Num = Num,
-                           Title = Title.Name,
+                           Title = Title.SearchTitle,
                        };
         }
     }

@@ -23,6 +23,12 @@ namespace GreasyHands.DAL.Container
                 {"RELATED MERCHANDISE", "Merchandise"},
                 {"PREVIEWS PUBLICATIONS","Preview Publications"},
                 {"IDW PUBLISHING", "IDW Publishing"},
+                {"IDW", "IDW Publishing"},
+                {"COMICS & GRAPHIC NOVELS", "Other/Independent"},
+                {"BOOKS", "Other/Independent"},
+                {"IMAGE COMICS/TOP COW PRODUCTIONS", "Image Comics"},
+                {"IMAGE COMICS/MCFARLANE TOYS", "Merchandise"},
+                {"DC COMICS/DC DIRECT", "Merchandise"},
             };
 
         public static bool IsPublisher(string line)

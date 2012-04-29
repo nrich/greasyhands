@@ -18,5 +18,19 @@ namespace GreasyHandsTests
             //Assert
             Assert.True(result);            
         }
+
+        [Fact]
+        public void test_fuzzy_title_matches_ampersand_and()
+        {
+            // Arrange
+            const string left = "Billy Batson And The Magic Of Shazam";
+            const string right = "Billy Batson & The Magic of Shazam!";
+
+            // Act
+            var result = left.FuzzyTitle() == right.FuzzyTitle();
+
+            //Assert
+            Assert.True(result);
+        }
     }
 }

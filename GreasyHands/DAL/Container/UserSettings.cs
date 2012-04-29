@@ -59,7 +59,7 @@ namespace GreasyHands.DAL.Container
             return search && download;
         }
         
-        protected internal virtual ISearchProvider GetBestSearchProvider()
+        protected internal virtual IList<ISearchProvider> GetSearchProviders()
         {
             var searchProviders = from searchProviderSettings in SearchProviderSettings
                                   where searchProviderSettings.Enabled
@@ -68,6 +68,8 @@ namespace GreasyHands.DAL.Container
             ISearchProvider nzbdotsu = null;
             ISearchProvider nzbindexdotnl = null;
             ISearchProvider newznab = null;
+
+            var list = new List<ISearchProvider>();
 
 
             foreach (var searchProvider in searchProviders)
@@ -86,7 +88,16 @@ namespace GreasyHands.DAL.Container
                 }
             }
 
-            return newznab ?? nzbdotsu ?? nzbindexdotnl;
+            if (newznab != null)
+                list.Add(newznab);
+
+            if (nzbdotsu != null)
+                list.Add(nzbdotsu);
+
+            if (nzbindexdotnl != null)
+                list.Add(nzbindexdotnl);
+
+            return list;
         }
 
         protected internal virtual IDownloadProvider GetBestDownloadProvider()

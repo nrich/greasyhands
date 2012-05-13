@@ -59,6 +59,7 @@ namespace GreasyHands.DAL.Container
                            Limited = Title.Limited,
                            Num = Num,
                            Title = Title.SearchTitle,
+                           Year = Title.SearchYear ? String.Format("{0}", Release.Date.Year) : "",
                        };
         }
     }

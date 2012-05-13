@@ -136,10 +136,11 @@ namespace GreasyHandsWebApp.Routes
                                                             Have = title.Have(), 
                                                             Total = title.Total(), 
                                                             title.Mature,
-                                                            title.SearchTitle, 
+                                                            title.SearchTitle,
+                                                            title.SearchYear,
                                                             title.OneShot,
                                                             title.GraphicNovel,
-                                                            title.HardCover,
+                                                            title.HardCover,                                                            
                                                             Latest = title.LatestIssue().Release.Date.NiceDate(), 
                                                             title.Subscribed,
                                                             MatchTitle = title.MatchTitle.ToString(),
@@ -208,6 +209,16 @@ namespace GreasyHandsWebApp.Routes
                                 }
 
                                 var title = s.QueryOver<Title>().Where(i => i.Id == titleid).SingleOrDefault<Title>();
+
+                                if (subscribed)
+                                {
+                                    foreach (var issue in title.Issues.Where(i => i.Status == IssueStatus.New).ToList())
+                                    {
+                                        issue.Status = IssueStatus.Skipped;
+                                        s.SaveOrUpdate(issue);
+                                    }   
+                                }
+
                                 title.Subscribed = subscribed;
                                 title.MatchTitle = matchTitle;
 
@@ -220,6 +231,7 @@ namespace GreasyHandsWebApp.Routes
 
                                 var title = s.QueryOver<Title>().Where(i => i.Id == titleid).SingleOrDefault<Title>();
                                 title.SearchTitle = searchTitle;
+                                title.SearchYear = Request.Form.SearchYear.HasValue;
 
                                 s.SaveOrUpdate(title);
                             }

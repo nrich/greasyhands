@@ -7,7 +7,7 @@ namespace GreasyHands.Search.Matcher
     {
         public bool MatchFilename(Query query, string filename, C2CPreference c2CPreferences, MatchTitle matchTitle)
         {
-            var match = Regex.Match(filename, @"^(.+?)\s+(?:v\d+)?\s*(\d+)\s+(\(?of\s+\d+\)?)?\s*\(?\d\d\d\d\)?", RegexOptions.IgnoreCase);
+            var match = Regex.Match(filename, @"^(.+?)\s+(?:v\d+)?\s*(\d+)\s+(\(?of\s+\d+\)?)?\s*\(?(\d\d\d\d)\)?", RegexOptions.IgnoreCase);
             var result = false;
             var covertocovermatch = new Regex(@"C2C", RegexOptions.IgnoreCase);
 
@@ -40,6 +40,14 @@ namespace GreasyHands.Search.Matcher
                     else if (c2CPreferences == C2CPreference.Only && !covertocovermatch.IsMatch(filename))
                     {
                         result = false;
+                    }
+
+                    if (result)
+                    {
+                        if (!string.IsNullOrWhiteSpace(query.Year))
+                        {
+                            result = query.Year == match.Groups[4].Value;
+                        }
                     }
                 }
 

@@ -40,7 +40,7 @@ namespace GreasyHands.Search.Provider
 
         public List<Result> Search(Query query)
         {
-            var searchString = String.Format("{0} {1}", query.Title, query.Num);
+            var searchString = String.Format(!string.IsNullOrWhiteSpace(query.Year) ? "{0} {1} {2}" : "{0} {1}", query.Title, query.Num, query.Year);
 
             var url = GetSearchURL(searchString);
             var feed = GetRssFeed.GetRssFeed.Get(GetHostResource(), url);

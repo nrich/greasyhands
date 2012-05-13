@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NVelocityViewEngine.cs" />
+    <Compile Include="Routes\Api.cs" />
     <Compile Include="Routes\Publishers.cs" />
     <Compile Include="Routes\Releases.cs" />
     <Compile Include="Routes\Titles.cs" />

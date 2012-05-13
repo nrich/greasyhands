@@ -94,8 +94,9 @@
             <div class="span12">
         		<form method="POST">
 					<input type="hidden" name="titleid" value="$Model.Title.Id" />
-                    <input type="text" class="input-xlarge" id="searchtitle" name="SearchTitle" value="$Model.Title.SearchTitle"/>
-                    <button class="btn btn-primary" type="submit">Save Search Title</button>
+                    Search title<input type="text" class="input-xlarge" id="searchtitle" name="SearchTitle" value="$Model.Title.SearchTitle"/><br />
+                    Add release year to search <input type="checkbox" id="searchYear" name="SearchYear" #if ($Model.Title.SearchYear) checked="1" #end value="1"/><br />
+                    <button class="btn btn-primary" type="submit">Save Search Options</button>
                 </form>
             </div>
         </div>

@@ -156,6 +156,54 @@ namespace GreasyHandsTests.Search
 
             // Assert
             Assert.True(result);
-        }        
+        }
+
+        [Fact]
+        public void test_title_with_year_match_year()
+        {
+            // Arrange
+            var query = new Query { Num = 3, Title = "Villains For Hire", Year = "2012"};
+            const string filename = "Villains For Hire 3 of 4 (2012)(FB-DCP)(C2C).cbz";
+
+            var searchMatcher = new SearchMatcher();
+
+            // Act
+            var result = searchMatcher.MatchFilename(query, filename, C2CPreference.None, MatchTitle.Exact);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void test_title_with_year_not_match_year()
+        {
+            // Arrange
+            var query = new Query { Num = 3, Title = "Villains For Hire", Year = "2011" };
+            const string filename = "Villains For Hire 3 of 4 (2012)(FB-DCP)(C2C).cbz";
+
+            var searchMatcher = new SearchMatcher();
+
+            // Act
+            var result = searchMatcher.MatchFilename(query, filename, C2CPreference.None, MatchTitle.Exact);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void test_title_with_no_year_match_year()
+        {
+            // Arrange
+            var query = new Query { Num = 3, Title = "Villains For Hire", Year = "" };
+            const string filename = "Villains For Hire 3 of 4 (2012)(FB-DCP)(C2C).cbz";
+
+            var searchMatcher = new SearchMatcher();
+
+            // Act
+            var result = searchMatcher.MatchFilename(query, filename, C2CPreference.None, MatchTitle.Exact);
+
+            // Assert
+            Assert.True(result);
+        }
     }
 }

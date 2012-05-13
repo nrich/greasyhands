@@ -33,6 +33,7 @@ namespace GreasyHands.DAL.Container
         public virtual MatchTitle MatchTitle { get; set; }
 
         public virtual string SearchTitle { get; set; }
+        public virtual bool SearchYear { get; set; }
 
         public virtual Publisher Publisher { get; set; }
         public virtual IList<Issue> Issues { get; private set; }
@@ -86,6 +87,7 @@ namespace GreasyHands.DAL.Container
             Map(x => x.Hidden).Default("false");
 
             Map(x => x.SearchTitle).Nullable();
+            Map(x => x.SearchYear).Not.Nullable().Default("1");
 
             Map(x => x.LastSearch).Not.Nullable();
             Map(x => x.MatchTitle).Not.Nullable().Default(MatchTitle.Exact.ToString());

@@ -6,5 +6,6 @@
         public int Limited { get; set; }
         public int Num { get; set; }
         public string Title { get; set; }
+        public string Year { get; set; }
     }
 }

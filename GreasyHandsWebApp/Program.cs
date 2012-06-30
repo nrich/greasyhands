@@ -12,11 +12,12 @@ namespace GreasyHandsWebApp
 {
     class Program
     {
-        public Program(ScheduleUpdater updater, WantedSearch search)
+        public Program(ScheduleUpdater updater, WantedSearch search, ISession session)
         {
-            ScheduleUpdater.AddReleaseURL(new Uri("http://www.previewsworld.com/shipping/newreleases.txt"));
             new Thread(updater.Run).Start();
             new Thread(search.Run).Start();
+
+            ScheduleUpdater.AddReleaseURL(new Uri("http://www.previewsworld.com/shipping/newreleases.txt"));
         }
 
         // ReSharper disable FunctionNeverReturns
@@ -54,7 +55,6 @@ namespace GreasyHandsWebApp
             builder.RegisterType<ScheduleParser>();
             builder.RegisterType<ScheduleUpdater>();
             builder.RegisterType<WantedSearch>();
-            
 
             builder.RegisterType<Program>();
 

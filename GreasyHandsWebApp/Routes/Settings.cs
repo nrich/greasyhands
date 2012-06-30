@@ -35,12 +35,10 @@ namespace GreasyHandsWebApp.Routes
                     {
                         using (var s = db.OpenSession())
                         {
-                            using (s.BeginTransaction())
-                            {
-                                var userSettings = s.QueryOver<UserSettings>().SingleOrDefault<UserSettings>();
+                            var userSettings = s.QueryOver<UserSettings>().SingleOrDefault<UserSettings>();
 
-                                return View["Settings/General", new { userSettings.ApiKey, userSettings.C2CPreference, userSettings.SearchInterval }];
-                            }
+                            return View["Settings/General", new { userSettings.ApiKey, userSettings.C2CPreference, userSettings.SearchInterval }];
+
                         }
                     }
                 };
@@ -83,13 +81,16 @@ namespace GreasyHandsWebApp.Routes
                 {
                     using (var s = db.OpenSession())
                     {
-                        using (var transaction = s.BeginTransaction())
-                        {
-                            var searchSettings = s.QueryOver<SearchProviderSettings>().List<SearchProviderSettings>();
+                        var searchSettings = s.QueryOver<SearchProviderSettings>().List<SearchProviderSettings>();
 
-                            if (searchSettings.Count == 0)
+                        if (searchSettings.Count == 0)
+                        {
+                            using (var transaction = s.BeginTransaction())
                             {
+
                                 var userSettings = s.QueryOver<UserSettings>().SingleOrDefault<UserSettings>();
+
+
 
                                 var searchSettingsDefault = new SearchProviderSettings
                                                                 {
@@ -99,18 +100,16 @@ namespace GreasyHandsWebApp.Routes
                                                                     UserSettings = userSettings,
                                                                 };
 
+                                transaction.Commit();
                                 s.SaveOrUpdate(searchSettingsDefault);
-
                                 searchSettings.Add(searchSettingsDefault);
                             }
-
-                            transaction.Commit();
-
-                            return View["Settings/Search",
-                                new {
-                                    Search = searchSettings,
-                                }];                            
                         }
+
+                        return View["Settings/Search",
+                            new {
+                                Search = searchSettings,
+                            }];                            
                     }
                 }
             };

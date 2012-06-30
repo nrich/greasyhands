@@ -20,7 +20,7 @@ namespace GreasyHands.Schedule
 
         public DateTime ShippingDate(string line)
         {
-            var shippingDatePattern = new Regex(@"^(?:Shipping(?:\s+This\s+Week:)?\s+)(.+)$", RegexOptions.IgnoreCase);
+            var shippingDatePattern = new Regex(@"^(?:Shipping(?:\s+\w+\s+Week:)?\s+)(.+)$", RegexOptions.IgnoreCase);
 
             if (shippingDatePattern.IsMatch(line))
             {
@@ -32,6 +32,42 @@ namespace GreasyHands.Schedule
             }
 
             return DateTime.MinValue;
+        }
+
+        public void FixExistingTitles()
+        {
+            using (var db = session.SessionFactory("test"))
+            {
+                using (var s = db.OpenSession())
+                {
+                    foreach (var title in s.QueryOver<Title>().List<Title>())
+                    {
+                        var titleName = title.Name;
+                        var fixedTitle = parser.FixTitle(titleName);                        
+
+                        if (titleName != fixedTitle)
+                        {
+                            var titleList = s.QueryOver<Title>().Where(t => t.Name == titleName).List<Title>();
+
+                            foreach (var t in titleList)
+                            {
+                                using (var transaction = s.BeginTransaction())
+                                {
+                                    t.Name = fixedTitle;
+
+                                    if (t.SearchTitle == titleName)
+                                    {
+                                        t.SearchTitle = fixedTitle;
+                                    }
+
+                                    s.SaveOrUpdate(t);
+                                    transaction.Commit();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public void Parse(TextReader reader)

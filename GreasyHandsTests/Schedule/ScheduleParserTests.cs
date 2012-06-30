@@ -199,5 +199,20 @@ namespace GreasyHandsTests.Schedule
             Assert.False(shippingDate == DateTime.MinValue);
             Assert.True(shippingDate == new DateTime(2010, 6, 30));
         }
+
+        [Fact]
+        public void test_line_matches_shipping_date_nextweek_long()
+        {
+            // Arrange
+            var parser = new ScheduleParser(null, null);
+            const string line = "Shipping Next Week:  June 30, 2010";
+
+            // Act
+            DateTime shippingDate = parser.ShippingDate(line);
+
+            //Assert
+            Assert.False(shippingDate == DateTime.MinValue);
+            Assert.True(shippingDate == new DateTime(2010, 6, 30));
+        }
     }
 }

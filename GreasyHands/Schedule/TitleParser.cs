@@ -111,7 +111,10 @@ namespace GreasyHands.Schedule
             return text;
         }
 
-
+        public string FixTitle(string title)
+        {
+            return NormaliseName(title.ToUpper());
+        }
 
         private string NormaliseName(string title)
         {
@@ -119,6 +122,7 @@ namespace GreasyHands.Schedule
             title = title.Replace("O/T", "OF THE");
             title = title.Replace(" OT ", " OF THE ");
             title = title.Replace("I/T", "IN THE");
+            title = title.Replace("BTVS", "BUFFY THE VAMPIRE SLAYER");
 
             {
                 var r = new Regex(@"([^\s]+)");

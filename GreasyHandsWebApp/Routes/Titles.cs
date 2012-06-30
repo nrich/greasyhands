@@ -22,19 +22,16 @@ namespace GreasyHandsWebApp.Routes
                 {
                     using (var s = db.OpenSession())
                     {
-                        using (s.BeginTransaction())
+                        var titles = s.QueryOver<Title>().Where(t => t.Subscribed == false).OrderBy(t => t.Name).Asc.List<Title>();
+                        IList list = new ArrayList();
+
+                        foreach (var title in titles)
                         {
-                            var titles = s.QueryOver<Title>().Where(t => t.Subscribed == false).OrderBy(t => t.Name).Asc.List<Title>();
-                            IList list = new ArrayList();
-
-                            foreach (var title in titles)
-                            {
-                                list.Add(new { LatestNum = title.LatestIssue().Num, Latest = title.LatestIssue().Release.Date.NiceDate(), title.Limited, title.Subscribed, title.Name, title.Id, Publisher = new { title.Publisher.Name, title.Publisher.Id }, });
-                            }
-
-                            var model = new { titles = list };
-                            return View["Titles/Index", model];
+                            list.Add(new { LatestNum = title.LatestIssue().Num, Latest = title.LatestIssue().Release.Date.NiceDate(), title.Limited, title.Subscribed, title.Name, title.Id, Publisher = new { title.Publisher.Name, title.Publisher.Id }, });
                         }
+
+                        var model = new { titles = list };
+                        return View["Titles/Index", model];
                     }
                 }
             };

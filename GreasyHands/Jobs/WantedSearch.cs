@@ -32,7 +32,7 @@ namespace GreasyHands.Jobs
                 {
                     using (var s = db.OpenSession())
                     {
-                        using (var transaction = s.BeginTransaction())
+                        
                         {
                             var userSettings = s.QueryOver<UserSettings>().SingleOrDefault<UserSettings>();
 
@@ -62,7 +62,8 @@ namespace GreasyHands.Jobs
                                 var localTitle = title;
 
                                 var issues =
-                                    s.QueryOver<Issue>().Where(i => i.Status == IssueStatus.Wanted && i.Title == localTitle).List<Issue>();
+                                    s.QueryOver<Issue>().Where(
+                                        i => i.Status == IssueStatus.Wanted && i.Title == localTitle).List<Issue>();
 
                                 foreach (var issue in issues)
                                 {
@@ -71,18 +72,28 @@ namespace GreasyHands.Jobs
                                     var query = issue.GenerateQuery();
                                     var found = false;
 
+
                                     foreach (var searchProvider in searchProviders)
                                     {
                                         var results = searchProvider.Search(query);
 
                                         foreach (var result in results)
                                         {
-                                            if (searchMatcher.MatchFilename(query, result.Title, userSettings.C2CPreference, issue.Title.MatchTitle))
+                                            if (searchMatcher.MatchFilename(query, result.Title,
+                                                                            userSettings.C2CPreference,
+                                                                            issue.Title.MatchTitle))
                                             {
                                                 issue.Status = downloadProvider.QueueDownload(result)
-                                                                   ? IssueStatus.Grabbed
-                                                                   : IssueStatus.Failed;
-                                                s.SaveOrUpdate(issue);
+                                                                    ? IssueStatus.Grabbed
+                                                                    : IssueStatus.Failed;
+
+                                                using (var transaction = s.BeginTransaction())
+                                                {
+
+                                                    s.SaveOrUpdate(issue);
+                                                    transaction.Commit();
+                                                }
+
                                                 found = true;
                                                 break;
                                             }
@@ -93,12 +104,15 @@ namespace GreasyHands.Jobs
                                     }
                                 }
 
-                                title.LastSearch = DateTime.Now;
-                                s.SaveOrUpdate(title);
-                            }
+                                using (var transaction = s.BeginTransaction())
+                                {
+                                    title.LastSearch = DateTime.Now;
+                                    s.SaveOrUpdate(title);
 
-                            transaction.Commit();
-                        }
+                                    transaction.Commit();
+                                }
+                            }
+                        }        
                     }
                 }
 

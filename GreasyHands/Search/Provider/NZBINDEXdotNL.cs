@@ -26,6 +26,9 @@ namespace GreasyHands.Search.Provider
             Console.WriteLine(url);
             var feed = GetRssFeed.GetRssFeed.Get("http://www.nzbindex.nl", url);
 
+            if (feed == null)
+                return new List<Result>();
+
             if (feed.Channels == null)
                 return new List<Result>();
 

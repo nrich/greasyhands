@@ -53,6 +53,8 @@ namespace GreasyHands.Jobs
         {
             Thread.CurrentThread.Name = "Schedule Updater";
 
+            Thread.Sleep(30000);
+
             while (true)
             {
                 if (UpdateURLs.Count > 0)
@@ -61,6 +63,8 @@ namespace GreasyHands.Jobs
                     var url = UpdateURLs.Dequeue();
 
                     Console.WriteLine(url);
+
+                    parser.FixExistingTitles();
 
                     var request = WebRequest.Create(url);
 

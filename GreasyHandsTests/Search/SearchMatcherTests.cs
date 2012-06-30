@@ -205,5 +205,21 @@ namespace GreasyHandsTests.Search
             // Assert
             Assert.True(result);
         }
+
+        [Fact]
+        public void test_filename_with_no_year()
+        {
+            // Arrange
+            var query = new Query { Num = 7, Title = "Blue Beetle", Year = "" };
+            const string filename = "Blue Beetle 7.cbz";
+
+            var searchMatcher = new SearchMatcher();
+
+            // Act
+            var result = searchMatcher.MatchFilename(query, filename, C2CPreference.None, MatchTitle.Exact);
+
+            // Assert
+            Assert.True(result);
+        }
     }
 }

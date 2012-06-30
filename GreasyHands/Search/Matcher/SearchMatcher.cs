@@ -7,7 +7,7 @@ namespace GreasyHands.Search.Matcher
     {
         public bool MatchFilename(Query query, string filename, C2CPreference c2CPreferences, MatchTitle matchTitle)
         {
-            var match = Regex.Match(filename, @"^(.+?)\s+(?:v\d+)?\s*(\d+)\s+(\(?of\s+\d+\)?)?\s*\(?(\d\d\d\d)\)?", RegexOptions.IgnoreCase);
+            var match = Regex.Match(filename, @"^(.+?)\s+(?:v\d+)?\s*(\d+)\s*(\(?of\s+\d+\)?)?\s*(?:\(?(\d\d\d\d)\)?)?", RegexOptions.IgnoreCase);
             var result = false;
             var covertocovermatch = new Regex(@"C2C", RegexOptions.IgnoreCase);
 

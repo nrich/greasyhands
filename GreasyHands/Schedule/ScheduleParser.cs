@@ -31,6 +31,16 @@ namespace GreasyHands.Schedule
                 return shippingDate;
             }
 
+            var shippingDatePatternRelease = new Regex(@"^New Releases For (.+)$", RegexOptions.IgnoreCase);
+            if (shippingDatePatternRelease.IsMatch(line))
+            {
+                var m = shippingDatePatternRelease.Match(line);
+
+                var shippingDate = DateTime.Parse(m.Groups[1].Value, new CultureInfo("en-US"));
+
+                return shippingDate;
+            }
+
             return DateTime.MinValue;
         }
 

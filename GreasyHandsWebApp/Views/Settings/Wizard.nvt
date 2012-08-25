@@ -1,69 +1,190 @@
 ﻿#parse("Views/common/header.nvt")
-#parse("Views/common/navigation.nvt")
 
-		<div id="SubMenu">
-			<span>
-				<a href="/subscriptions/search">Add new subscription</a> |
-				<a href="/subscriptions/search">Restart</a> |
-				<a href="/subscriptions/search">Shutdown</a>
-			</span>
-		</div>
+		<div class="row">
+            <div class="span12">
+				<h3 class="title">Download Provider Configuration</h3>
 
-		<div id="contentWrapper">
-			<div id="content">
-				<h1 class="title">Download Provider Configuration</h1>
-
-	<form method="POST">
+	            <form class="form-horizontal well" method="POST">
 
 
-		<fieldset>
-			<legend>Add New Search Provider</legend>
+		        <fieldset>
+			        <legend>Search Provider</legend>
 
-			Type: <select name="SearchType">
-				<option value="NZBINDEXdotNL">nzbindex.nl</option>
-				<option value="NZBdotSU">nzb.su</option>
-			</select><br />
+                    <div class="control-group">
+                        <label class="control-label" for="type">Type:</label>
+                        <div class="controls">
+                            <select id="type" name="Type">
+				                <option value="NZBINDEXdotNL">nzbindex.nl</option>
+				                <option value="NZBdotSU">nzb.su</option>
+                                <option value="NewzNab">NewzNab</option>
+			                </select>
+                        </div>
+                    </div>
 
-			API Key: <input type="text" name="SearchApiKey" value=""/><br />
-			Enabled: <input type="checkbox" name="SearchEnabled" value="1" checked /><br />
-		</fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="apikey">API Key:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="apikey" name="ApiKey" value=""/>
+                        </div>
+                    </div>
 
-		<fieldset>
-			<legend>Add New Download Provider</legend>
+                    <div class="control-group">
+                        <label class="control-label" for="host">Host:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="host" name="Host" value=""/>
+                        </div>
+                    </div>
 
-			Type: <select name="DownloadType">
-				<option value="SABnzbd">SABnzbd</option>
-				<option value="SaveFile">Save File</option>
-			</select><br />
+                    <div class="control-group">
+                        <label class="control-label" for="port">Port:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="port" name="Port" value="80"/>
+                        </div>
+                    </div>
 
-			Host: <input type="text" name="Host" value="localhost"/><br />
-			Port: <input type="text" name="Port" value="9090"/><br />
-			Path: <input type="text" name="Path" value="sabnzbd"/><br />
-            API Key: <input type="text" name="DownloadApiKey" value="FIXME"/><br />
-			Username: <input type="text" name="Username" value=""/><br />
-			Password: <input type="text" name="Password" value=""/><br />
-			Category: <input type="text" name="Category" value="books"/><br />
-			Enabled: <input type="checkbox" name="DownloadEnabled" value="1" checked /><br />
+                    <div class="control-group">
+                        <label class="control-label" for="host">Path:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="path" name="Path" value="/api"/>
+                        </div>
+                    </div>
 
-			<br />
-		</fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="ssl">SSL:</label>
+                        <div class="controls">
+                            <input type="checkbox" name="SSL" />
+                        </div>
+                    </div>
 
-		<fieldset>
-			<legend>General Settings</legend>
+                    <div class="control-group">
+                        <label class="control-label" for="apikey">Enabled:</label>
+                        <div class="controls">
+                            <input type="checkbox" name="Enabled" checked />
+                        </div>
+                    </div>
+		        </fieldset>
 
-            Search Interval: <input type="text" name="SearchInterval" value="1"/><br />
-			API Key: <input type="text" name="ApiKey" value="$Model.ApiKey"/><br />
-			History: <input type="text" name="Weeks" value="4"/><br />
+		        <fieldset>
+			        <legend>Download Provider</legend>
 
-			Cover to Cover scans (c2c): <select name="C2CPreference">
-				<option value="Ignore">Ignore C2C scans</option>
-				<option value="None" selected>Download C2C Scans as normal</option>
-				<option value="Only">Only download C2C scans</option>
-			</select><br />
+                    <div class="control-group">
+                        <label class="control-label" for="type">Type:</label>
+                        <div class="controls">
+                            <select id="Select1" name="Type">
+								<option value="SABnzbd">SABnzbd</option>
+								<option value="SaveFile">Save File</option>
+							</select><br />
 
-			<input type="submit" value="Save"/>
-		</fieldset>
+                            <p class="help-block">Provider type</p>
+                        </div>
+                    </div>
 
-	</form>
+                    <div class="control-group">
+                        <label class="control-label" for="host">Host:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="Text1" name="Host" value="localhost"/>
+                            <p class="help-block">Hostname</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="port">Port:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="Text2" name="Port" value="9090"/>
+                            <p class="help-block">Port</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="host">Path:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="Text4" name="Path" value="sabnzbd"/>
+                            <p class="help-block">Path</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="apikey">API Key:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="Text5" name="ApiKey" value="FIXME"/>
+                            <p class="help-block">API Key</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="username">Username:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="username" name="Username" value=""/>
+                            <p class="help-block">Username</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="password">Password:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="password" name="Password" value=""/>
+                            <p class="help-block">Password</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="category">Category:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="category" name="Category" value=""/>
+                            <p class="help-block">Category</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="enabled">Enabled:</label>
+                        <div class="controls">
+                            <input type="checkbox" id="enabled" name="Enabled" #if ($provider.Enabled) checked #end/>
+                            <p class="help-block">Enabled</p>
+                        </div>
+                    </div>
+		        </fieldset>
+
+		        <fieldset>
+			        <legend>General Settings</legend>
+
+                    <div class="control-group">
+                        <label class="control-label" for="apikey">API Key:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="Text3" name="ApiKey" value="$Model.ApiKey"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="searchinterval">Search Interval:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="searchinterval" name="SearchInterval" value="1"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="searchinterval">History:</label>
+                        <div class="controls">
+                            <input type="text" class="input-xlarge" id="weeks" name="Weeks" value="4"/>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="C2CPreference">Cover to Cover scans:</label>
+                        <div class="controls">
+                            <select id="C2CPreference" name="C2CPreference">
+				                <option value="Ignore">Ignore C2C scans</option>
+				                <option value="None" selected>Download C2C Scans as normal</option>
+				                <option value="Only">Only download C2C scans</option>
+						    </select>
+                        </div>
+                    </div>
+			        <div class="form-actions">
+                        <button class="btn btn-inverse" type="submit"><i class="icon-ok-sign icon-white"></i>Save changes</button>
+                    </div>
+		        </fieldset>
+
+	        </form>
+         </div>
+        </div>
 
 #parse("Views/common/footer.nvt")

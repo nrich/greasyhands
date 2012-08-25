@@ -14,3 +14,5 @@ database.db
 
 # nuget
 .nuget
+GreasyHands.sln.DotSettings.user
+packages/

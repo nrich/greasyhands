@@ -4,8 +4,10 @@
 		<div class="row">
             <div class="span12">
 
+            <h3 class="title">Search Providers</h3>
+
 #foreach ($provider in $Model.Search)
-	<form class="form-horizontal" method="POST">
+	<form class="form-horizontal well" method="POST">
 		<fieldset>
 			<legend>$provider.Type</legend>
 
@@ -64,13 +66,13 @@
 			<input type="hidden" name="Id" value="$provider.Id"/><br />
 
 			<div class="form-actions">
-                <button class="btn btn-primary" type="submit">Save changes</button>
+                <button class="btn btn-inverse" type="submit"><i class="icon-ok-sign icon-white"></i>Save changes</button>
             </div>
 		</fieldset>
 	</form>
 #end
 
-	<form class="form-horizontal" method="POST">
+	<form class="form-horizontal well" method="POST">
 		<fieldset>
 			<legend>Add New Search Provider</legend>
 
@@ -135,7 +137,7 @@
             </div>
 
             <div class="form-actions">
-                <button class="btn btn-primary" type="submit">Save changes</button>
+                <button class="btn btn-inverse" type="submit"><i class="icon-ok-sign icon-white"></i>Save changes</button>
             </div>
 
 		</fieldset>

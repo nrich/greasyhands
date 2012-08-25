@@ -3,8 +3,9 @@
 
 		<div class="row">
             <div class="span12">
+                <h3 class="title">General</h3>
 
-				<form class="form-horizontal" method="POST">
+				<form class="form-horizontal well" method="POST">
 					<fieldset>
 						<legend>Settings</legend>
 
@@ -37,7 +38,7 @@
                         </div>
 
 						<div class="form-actions">
-                            <button class="btn btn-primary" type="submit">Save changes</button>
+                            <button class="btn btn-inverse" type="submit"><i class="icon-ok-sign icon-white"></i>Save changes</button>
                         </div>
 
 					</fieldset>

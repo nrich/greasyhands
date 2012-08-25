@@ -1,98 +1,95 @@
 ﻿<!-- begin menu navigation -->
 
 <div class="row">
-  <div class="span12">
+  <div class="span12 greasyhands-navigation">
+    <div class="btn-toolbar" style="margin: 0;">
+        <div class="btn-group">
+            <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#menu-subscriptions">
+              Subscriptions <b class="caret"></b>
+            </a>
 
-    <ul class="nav nav-pills">
-      <li class="dropdown" id="menu-subsscriptions">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu-subsscriptions">
-          Subscriptions<b class="caret"></b>
-        </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/">My Subscriptions</a>
+              </li>
+              <li>
+                <a href="/add/">Add New Subscription</a>
+              </li>
+            </ul>
+        </div>
 
+        <div class="btn-group">
+            <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#menu-titles">
+              Titles <b class="caret"></b>
+            </a>
 
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/titles/">All Titles</a>
+              </li>
+              <li>
+                <a href="/titles/search/">Title Search</a>
+              </li>
+            </ul>
+        </div>
 
-        <ul class="dropdown-menu">
-          <li>
-            <a href="/">My Subscriptions</a>
-          </li>
-          <li>
-            <a href="/add/">Add New Subscription</a>
-          </li>
-        </ul>
-      </li>
+        <div class="btn-group">
+            <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#menu-publishers">
+              Publishers <b class="caret"></b>
+            </a>
 
-      <li class="dropdown" id="menu-titles">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu-titles">
-          Titles<b class="caret"></b>
-        </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/publishers/">All Publishers</a>
+              </li>
+              <li>
+                <a href="/publishers/titles/">Titles By Publisher</a>
+              </li>
+            </ul>
+        </div>
 
-        <ul class="dropdown-menu">
-          <li>
-            <a href="/titles/">All Titles</a>
-          </li>
-          <li>
-            <a href="/titles/search/">Title Search</a>
-          </li>
-        </ul>
-      </li>
+        <div class="btn-group">
+            <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#menu-releases">
+              Releases <b class="caret"></b>
+            </a>
 
-      <li class="dropdown" id="menu-publishers">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu-publishers">
-          Publishers<b class="caret"></b>
-        </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/releases/">Current Releases</a>
+              </li>
+              <li>
+                <a href="/releases/history/">Release History</a>
+              </li>
+              <li>
+                <a href="/releases/upload/">Upload</a>
+              </li>
+            </ul>
+        </div>
 
-        <ul class="dropdown-menu">
-          <li>
-            <a href="/publishers/">All Publishers</a>
-          </li>
-          <li>
-            <a href="/publishers/titles/">Titles By Publisher</a>
-          </li>
-        </ul>
-      </li>
+        <div class="btn-group">
+            <a class="btn btn-inverse dropdown-toggle" data-toggle="dropdown" href="#menu-settings">
+              Settings <b class="caret"></b>
+            </a>
 
-      <li class="dropdown" id="menu-releases">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu-releases">
-          Releases<b class="caret"></b>
-        </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/settings/">Overview</a>
+              </li>
 
-        <ul class="dropdown-menu">
-          <li>
-            <a href="/releases/">Current Releases</a>
-          </li>
-          <li>
-            <a href="/releases/history/">Release History</a>
-          </li>
-          <li>
-            <a href="/releases/upload/">Upload</a>
-          </li>
-        </ul>
-      </li>
+              <li>
+                <a href="/settings/general/">General</a>
+              </li>
 
-      <li class="dropdown" id="menu-settings">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu-settings">
-          Settings<b class="caret"></b>
-        </a>
+              <li>
+                <a href="/settings/search/">Search Providers</a>
+              </li>
 
-        <ul class="dropdown-menu">
-          <li>
-            <a href="/settings/">Overview</a>
-          </li>
-
-          <li>
-            <a href="/settings/general/">General</a>
-          </li>
-
-          <li>
-            <a href="/settings/search/">Search Providers</a>
-          </li>
-
-          <li>
-            <a href="/settings/download/">Download Providers</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+              <li>
+                <a href="/settings/download/">Download Providers</a>
+              </li>
+            </ul>
+        </div>
+    </div>
   </div>
 </div>
 <!-- end menu navigation -->

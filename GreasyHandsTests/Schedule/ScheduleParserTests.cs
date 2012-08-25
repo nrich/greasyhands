@@ -45,7 +45,6 @@ namespace GreasyHandsTests.Schedule
             Assert.True(shippingDate == new DateTime(2010, 6, 30));
         }
 
-
         [Fact]
         public void test_line_matches_shipping_date_mdyy_long()
         {
@@ -213,6 +212,21 @@ namespace GreasyHandsTests.Schedule
             //Assert
             Assert.False(shippingDate == DateTime.MinValue);
             Assert.True(shippingDate == new DateTime(2010, 6, 30));
+        }
+
+        [Fact]
+        public void test_line_matches_shipping_date_releases_mddyyyy()
+        {
+            // Arrange
+            var parser = new ScheduleParser(null, null);
+            const string line = "New Releases For 8/22/2012";
+
+            // Act
+            DateTime shippingDate = parser.ShippingDate(line);
+
+            //Assert
+            Assert.False(shippingDate == DateTime.MinValue);
+            Assert.True(shippingDate == new DateTime(2012, 8, 22));
         }
     }
 }

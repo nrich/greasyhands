@@ -2,20 +2,37 @@
 #parse("Views/common/navigation.nvt")
 		<div class="row">
             <div class="span12">
-                <form class="well form-search" method="POST" autocomplete="off">
-                    Title: <input name="TitleName" type="text" class="input-medium search-query span2" style="margin: 0 auto;" data-provide="typeahead" data-items="6" data-source='$Model.titles'>
+                <h3 class="title">Add New Subscription</h3>
 
-			        Match Type: <select name="MatchTitle">
-				        <option value="Exact" selected>Exact Match</option>
-				        <option value="Partial">Partial Match</option>
-			        </select><br />
+                <form class="form-horizontal well" method="POST" autocomplete="off">
+                    <div class="control-group">
+                        <label class="control-label" for="titlename">Title:</label>
+                        <div class="controls">
+                            <input name="TitleName" type="text" class="input-medium search-query span2" style="margin: 0 auto;" data-provide="typeahead" data-items="6" data-source='$Model.titles'>
+                        </div>
+                    </div>
 
-			        Initial Status: <select name="IssueStatus">
-				        <option value="Wanted">Wanted</option>
-				        <option value="Skipped" selected>Skipped</option>
-			        </select><br />
+                    <div class="control-group">
+                        <label class="control-label" for="matchtitle">Match Type:</label>
+                        <div class="controls">
+                            <select id="matchtitle" name="MatchTitle">
+				                <option value="Exact" selected>Exact Match</option>
+				                <option value="Partial">Partial Match</option>
+			                </select>
+                        </div>
+                    </div>
 
-                    <button type="submit" class="btn">Add Subscription</button>
+                    <div class="control-group">
+                        <label class="control-label" for="issuestatus">Initial Status:</label>
+                        <div class="controls">
+                            <select id="issuestatus" name="IssueStatus">
+				                <option value="Wanted">Wanted</option>
+				                <option value="Skipped" selected>Skipped</option>
+			                </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-inverse"><i class="icon-plus-sign icon-white"></i> Add Subscription</button>
                 </form>
 			</div>
 		</div>

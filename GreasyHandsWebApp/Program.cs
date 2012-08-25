@@ -61,11 +61,12 @@ namespace GreasyHandsWebApp
 
 
             var nancyHost = new NancyHost(new Uri(url));
-            nancyHost.Start(); // start hosting
+            
 
             using (var container = builder.Build())
             {
                 container.Resolve<Program>();
+                nancyHost.Start(); // start hosting
                 Console.ReadKey();
 				
 				while (true) 

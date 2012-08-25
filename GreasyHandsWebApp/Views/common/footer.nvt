@@ -2,9 +2,11 @@
 		<!-- end page content -->
     
 
-		    <div class="footer">
-			    TODO put footer info in here
-		    </div>
-      </div>
+		    <div class="row">
+                <div class="span12>
+			        <small class="footer"><a href="http://www.greasyhands.net/">GreasyHands</a></small>
+		        </div>
+            </div>
+        </div>
     </body>
 </html>

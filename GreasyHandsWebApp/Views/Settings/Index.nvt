@@ -4,9 +4,9 @@
 		<div class="row">
             <div class="span12">
 
-				<h1 class="title">Configuration</h1>
+				<h3 class="title">Overview</h3>
 
-				<dl class="dl-horizontal">
+				<dl class="dl-horizontal well">
 						
 					<dt>Application Path: </dt>
 					<dd>$Model.AppPath</dd>

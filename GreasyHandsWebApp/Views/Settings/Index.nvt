@@ -8,13 +8,13 @@
 
 				<dl class="dl-horizontal well">
 						
-					<dt>Application Path: </dt>
+					<dt>App Path: </dt>
 					<dd>$Model.AppPath</dd>
 
-					<dt>Application Args: </dt>
+					<dt>App Args: </dt>
 					<dd>[$Model.Args]</dd>
 
-					<dt>Operating System: </dt>
+					<dt>OS: </dt>
 					<dd>$Model.OS</dd>
 
 					<dt>Runtime: </dt>

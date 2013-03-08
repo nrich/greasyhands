@@ -84,6 +84,7 @@
     <Compile Include="Download\SaveFile.cs" />
     <Compile Include="Jobs\WantedSearch.cs" />
     <Compile Include="Jobs\ScheduleUpdater.cs" />
+    <Compile Include="Jobs\ScheduleGrabber.cs" />
     <Compile Include="DAL\Container\Issue.cs" />
     <Compile Include="DAL\Container\Publisher.cs" />
     <Compile Include="DAL\Container\Release.cs" />

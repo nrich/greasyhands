@@ -12,12 +12,11 @@ namespace GreasyHandsWebApp
 {
     class Program
     {
-        public Program(ScheduleUpdater updater, WantedSearch search, ISession session)
+        public Program(ScheduleUpdater updater, WantedSearch search, ScheduleGrabber grabber)
         {
             new Thread(updater.Run).Start();
             new Thread(search.Run).Start();
-
-            ScheduleUpdater.AddReleaseURL(new Uri("http://www.previewsworld.com/shipping/newreleases.txt"));
+            new Thread(grabber.Run).Start();
         }
 
         // ReSharper disable FunctionNeverReturns
@@ -26,7 +25,6 @@ namespace GreasyHandsWebApp
         // ReSharper restore UnusedParameter.Local
         {
             var builder = new ContainerBuilder();
-            var searchProvider = new NZBdotSU { ApiKey = "test" };
 
             string host = "localhost";
             string port = "12345";
@@ -49,11 +47,11 @@ namespace GreasyHandsWebApp
 
             builder.RegisterType<SearchMatcher>().As<ISearchMatcher>();
             builder.RegisterType<SQLIteSession>().As<ISession>();
-            builder.RegisterInstance(searchProvider).As<ISearchProvider>();
             builder.RegisterType<TitleInfo>();
             builder.RegisterType<TitleParser>();
             builder.RegisterType<ScheduleParser>();
             builder.RegisterType<ScheduleUpdater>();
+            builder.RegisterType<ScheduleGrabber>();
             builder.RegisterType<WantedSearch>();
 
             builder.RegisterType<Program>();

@@ -81,7 +81,6 @@
                 <div class="controls">
                     <select id="type" name="Type">
 				        <option value="NZBINDEXdotNL">nzbindex.nl</option>
-				        <option value="NZBdotSU">nzb.su</option>
                         <option value="NewzNab">NewzNab</option>
 			        </select>
                     <p class="help-block">Type</p>

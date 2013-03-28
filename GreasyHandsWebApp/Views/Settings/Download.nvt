@@ -92,7 +92,7 @@
                         <div class="control-group">
                             <label class="control-label" for="type">Type:</label>
                             <div class="controls">
-                                <select id="type" name="Type">
+                                <select id="SearchType" name="SearchType">
 								    <option value="SABnzbd">SABnzbd</option>
 									<option value="SaveFile">Save File</option>
 								</select><br />

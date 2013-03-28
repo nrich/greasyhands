@@ -415,7 +415,7 @@ namespace GreasyHandsWebApp.Routes
                             }
   
                             var userSettings = s.QueryOver<UserSettings>().SingleOrDefault<UserSettings>();
-                            userSettings.ApiKey = Request.Form.ApiKey;
+                            userSettings.ApiKey = Request.Form.AppApiKey;
                             userSettings.Enabled = true;
                             userSettings.C2CPreference = covertocover;
                             userSettings.SearchInterval = int.Parse(Request.Form.SearchInterval);
@@ -434,15 +434,15 @@ namespace GreasyHandsWebApp.Routes
                             var destinationSettings = new DownloadProviderSettings
                             {
                                 ApiKey = Request.Form.DownloadApiKey,
-                                Host = Request.Form.Host,
-                                Port = Request.Form.Port,
+                                Host = Request.Form.DownloadHost,
+                                Port = Request.Form.DownloadPort,
                                 Type = downloadType,
                                 Enabled = Request.Form.DownloadEnabled.HasValue,
-                                Path = Request.Form.Path,
+                                Path = Request.Form.DownloadPath,
                                 UserSettings = userSettings,
-                                Category = Request.Form.Category,
-                                Username = Request.Form.Username,
-                                Password = Request.Form.Password,
+                                Category = Request.Form.DownloadCategory,
+                                Username = Request.Form.DownloadUsername,
+                                Password = Request.Form.DownloadPassword,
                             };
 
                             s.SaveOrUpdate(destinationSettings);
@@ -460,7 +460,11 @@ namespace GreasyHandsWebApp.Routes
                                 ApiKey = Request.Form.SearchApiKey,
                                 Type = searchType,
                                 Enabled = Request.Form.SearchEnabled.HasValue,
-                                UserSettings = userSettings
+                                UserSettings = userSettings,
+                                Host = Request.Form.SearchHost,
+                                Port = Request.Form.SearchPort,
+                                Path = Request.Form.SearchPath,
+                                SSL = Request.Form.SearchSSL.HasValue,
                             };
 
                             s.SaveOrUpdate(searchSettings);

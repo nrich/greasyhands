@@ -13,9 +13,10 @@
                     <div class="control-group">
                         <label class="control-label" for="type">Type:</label>
                         <div class="controls">
-                            <select id="type" name="Type">
+                            <select id="type" name="SearchType">
 				                <option value="NZBINDEXdotNL">nzbindex.nl</option>
                                 <option value="NewzNab">NewzNab</option>
+								<option value="NZBdotSU">nzb.su</option> 
 			                </select>
                         </div>
                     </div>
@@ -23,28 +24,28 @@
                     <div class="control-group">
                         <label class="control-label" for="apikey">API Key:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="apikey" name="ApiKey" value=""/>
+                            <input type="text" class="input-xlarge" id="apikey" name="SearchApiKey" value=""/>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label" for="host">Host:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="host" name="Host" value=""/>
+                            <input type="text" class="input-xlarge" id="host" name="SearchHost" value=""/>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label" for="port">Port:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="port" name="Port" value="80"/>
+                            <input type="text" class="input-xlarge" id="port" name="SearchPort" value="80"/>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label class="control-label" for="host">Path:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="path" name="Path" value="/api"/>
+                            <input type="text" class="input-xlarge" id="path" name="SearchPath" value="/api"/>
                         </div>
                     </div>
 
@@ -58,7 +59,7 @@
                     <div class="control-group">
                         <label class="control-label" for="apikey">Enabled:</label>
                         <div class="controls">
-                            <input type="checkbox" name="Enabled" checked />
+                            <input type="checkbox" name="SearchEnabled" checked />
                         </div>
                     </div>
 		        </fieldset>
@@ -69,7 +70,7 @@
                     <div class="control-group">
                         <label class="control-label" for="type">Type:</label>
                         <div class="controls">
-                            <select id="Select1" name="Type">
+                            <select id="Select1" name="DownloadType">
 								<option value="SABnzbd">SABnzbd</option>
 								<option value="SaveFile">Save File</option>
 							</select><br />
@@ -81,7 +82,7 @@
                     <div class="control-group">
                         <label class="control-label" for="host">Host:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="Text1" name="Host" value="localhost"/>
+                            <input type="text" class="input-xlarge" id="Text1" name="DownloadHost" value="localhost"/>
                             <p class="help-block">Hostname</p>
                         </div>
                     </div>
@@ -89,7 +90,7 @@
                     <div class="control-group">
                         <label class="control-label" for="port">Port:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="Text2" name="Port" value="9090"/>
+                            <input type="text" class="input-xlarge" id="Text2" name="DownloadPort" value="9090"/>
                             <p class="help-block">Port</p>
                         </div>
                     </div>
@@ -97,7 +98,7 @@
                     <div class="control-group">
                         <label class="control-label" for="host">Path:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="Text4" name="Path" value="sabnzbd"/>
+                            <input type="text" class="input-xlarge" id="Text4" name="DownloadPath" value="sabnzbd"/>
                             <p class="help-block">Path</p>
                         </div>
                     </div>
@@ -105,7 +106,7 @@
                     <div class="control-group">
                         <label class="control-label" for="apikey">API Key:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="Text5" name="ApiKey" value="FIXME"/>
+                            <input type="text" class="input-xlarge" id="Text5" name="DownloadApiKey" value="FIXME"/>
                             <p class="help-block">API Key</p>
                         </div>
                     </div>
@@ -113,7 +114,7 @@
                     <div class="control-group">
                         <label class="control-label" for="username">Username:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="username" name="Username" value=""/>
+                            <input type="text" class="input-xlarge" id="username" name="DownloadUsername" value=""/>
                             <p class="help-block">Username</p>
                         </div>
                     </div>
@@ -121,7 +122,7 @@
                     <div class="control-group">
                         <label class="control-label" for="password">Password:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="password" name="Password" value=""/>
+                            <input type="text" class="input-xlarge" id="password" name="DownloadPassword" value=""/>
                             <p class="help-block">Password</p>
                         </div>
                     </div>
@@ -129,7 +130,7 @@
                     <div class="control-group">
                         <label class="control-label" for="category">Category:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="category" name="Category" value=""/>
+                            <input type="text" class="input-xlarge" id="category" name="DownloadCategory" value=""/>
                             <p class="help-block">Category</p>
                         </div>
                     </div>
@@ -137,7 +138,7 @@
                     <div class="control-group">
                         <label class="control-label" for="enabled">Enabled:</label>
                         <div class="controls">
-                            <input type="checkbox" id="enabled" name="Enabled" #if ($provider.Enabled) checked #end/>
+                            <input type="checkbox" id="enabled" name="DownloadEnabled" checked/>
                             <p class="help-block">Enabled</p>
                         </div>
                     </div>
@@ -149,7 +150,7 @@
                     <div class="control-group">
                         <label class="control-label" for="apikey">API Key:</label>
                         <div class="controls">
-                            <input type="text" class="input-xlarge" id="Text3" name="ApiKey" value="$Model.ApiKey"/>
+                            <input type="text" class="input-xlarge" id="Text3" name="AppApiKey" value="$Model.ApiKey"/>
                         </div>
                     </div>
 

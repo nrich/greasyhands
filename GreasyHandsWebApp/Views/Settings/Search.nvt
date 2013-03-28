@@ -82,6 +82,7 @@
                     <select id="type" name="Type">
 				        <option value="NZBINDEXdotNL">nzbindex.nl</option>
                         <option value="NewzNab">NewzNab</option>
+						<option value="NZBdotSU">nzb.su</option> 
 			        </select>
                     <p class="help-block">Type</p>
                 </div>

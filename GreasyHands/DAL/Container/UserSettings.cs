@@ -11,7 +11,8 @@ namespace GreasyHands.DAL.Container
     {
         NZBdotSU,
         NZBINDEXdotNL,
-        NewzNab
+        NewzNab,
+        NUIP
     }
     // ReSharper restore InconsistentNaming
 
@@ -68,6 +69,7 @@ namespace GreasyHands.DAL.Container
             ISearchProvider nzbdotsu = null;
             ISearchProvider nzbindexdotnl = null;
             ISearchProvider newznab = null;
+            ISearchProvider nuip = null;
 
             var list = new List<ISearchProvider>();
 
@@ -78,6 +80,9 @@ namespace GreasyHands.DAL.Container
                 {
                     case SearchProviders.NewzNab:
                         newznab = searchProvider.GetProvider();
+                        break;
+                    case SearchProviders.NUIP:
+                        nuip = searchProvider.GetProvider();
                         break;
                     case SearchProviders.NZBdotSU:
                         nzbdotsu = searchProvider.GetProvider();
@@ -90,6 +95,9 @@ namespace GreasyHands.DAL.Container
 
             if (newznab != null)
                 list.Add(newznab);
+
+            if (nuip != null)
+                list.Add(nuip);
 
             if (nzbdotsu != null)
                 list.Add(nzbdotsu);
@@ -202,6 +210,12 @@ namespace GreasyHands.DAL.Container
                     {
                         var newznab = new NewzNab { ApiKey = ApiKey, Host = Host, Path = Path, Port = Port, SSL = SSL};
                         provider = newznab;
+                    }
+                    break;
+                case SearchProviders.NUIP:
+                    {
+                        var nuip = new NUIP { Host = Host, Port = Port, SSL = SSL};
+                        provider = nuip;
                     }
                     break;
                 case SearchProviders.NZBdotSU:

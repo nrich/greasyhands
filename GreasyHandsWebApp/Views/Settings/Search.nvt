@@ -55,6 +55,34 @@
             </div>
             #end
 
+
+            #if ($provider.Type == "NUIP")
+            <div class="control-group">
+                <label class="control-label" for="host">Host:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="host" name="Host" value="$provider.Host"/>
+                    <p class="help-block">Hostname</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="port">Port:</label>
+                <div class="controls">
+                    <input type="text" class="input-xlarge" id="port" name="Port" value="$provider.Port"/>
+                    <p class="help-block">Port</p>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="ssl">SSL:</label>
+                <div class="controls">
+                    <input type="checkbox" name="SSL" #if ($provider.SSL) checked #end/>
+                    <p class="help-block">Use SSL</p>
+                </div>
+            </div>
+            #end
+
+
             <div class="control-group">
                 <label class="control-label" for="enabled">Enabled:</label>
                 <div class="controls">

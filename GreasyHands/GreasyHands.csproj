@@ -101,6 +101,7 @@
     <Compile Include="Search\Provider\NewzNab.cs" />
     <Compile Include="Search\Provider\NZBINDEXdotNL.cs" />
     <Compile Include="Search\Provider\NZBdotSU.cs" />
+    <Compile Include="Search\Provider\NUIP.cs" />
     <Compile Include="Search\Provider\ISearchProvider.cs" />
     <Compile Include="Search\Query.cs" />
     <Compile Include="Search\Result.cs" />

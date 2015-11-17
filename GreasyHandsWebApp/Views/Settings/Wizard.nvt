@@ -15,6 +15,7 @@
                         <div class="controls">
                             <select id="type" name="SearchType">
 				                <option value="NZBINDEXdotNL">nzbindex.nl</option>
+                                <option value="NUIP">NUIP</option>
                                 <option value="NewzNab">NewzNab</option>
 								<option value="NZBdotSU">nzb.su</option> 
 			                </select>
